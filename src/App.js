@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from "react";
+ 
+function componenteA ({ temperatura, setTemperatura}) {
+    return (
+        <div>
+            <h2>Temperatura en componente A: {temperatura}°c</h2>
+             <button onClick={()=> setTemperatura(temperatura + 1)}>Aumentar</button>
+        </div>
+    );
+} 
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function ComponenteB ({temperatura,setTemperatura}){
+    return (
+        <div>
+            <h2>Temperatura en componente B: {temperatura}°c</h2>
+            <button onClick={()=> setTemperatura(temperatura + 1)}>Aumentar</button>
+
+        </div>
+    );
 }
 
-export default App;
+function App (){
+    const [temperatura, setTemperatura] = useState(0)
+    
+   return (
+    <div>
+     <componenteA temperatura={temperatura} setTemperatura={setTemperatura} />
+     <ComponenteB temperatura={temperatura} setTemperatura={setTemperatura} />
+    </div>
+    );
+}
+export default App; 
+
